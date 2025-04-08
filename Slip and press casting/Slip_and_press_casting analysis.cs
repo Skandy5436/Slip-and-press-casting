@@ -18,9 +18,9 @@ namespace Slip_and_press_casting
     /// new tabs/panels will automatically be created.
     /// </summary>
     public Slip_and_press_castingComponent()
-      : base("Slip and press casting", "Draft Analysis",
+      : base("Draft Angle analysis", "DA Analysis",
         "Shows the Faces which can be casted or not",
-        "Slip and Press", "Analysis")
+        "Slip and Press Casting", "Analysis")
     {
     }
 

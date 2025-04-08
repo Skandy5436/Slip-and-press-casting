@@ -12,9 +12,9 @@ namespace Slip_and_press_casting
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public Joinery()
-          : base("Slip and press casting Joinery", "Joinery",
+          : base("Joinery", "J",
         "Joinery for the mold",
-        "Slip and Press", "Joinery")
+        "Slip and Press Casting", "Joinery")
         {
         }
 
