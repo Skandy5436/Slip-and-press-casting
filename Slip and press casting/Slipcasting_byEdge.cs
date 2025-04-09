@@ -14,7 +14,7 @@ namespace Slip_and_press_casting
         /// </summary>
         public Slipcasting_byEdge()
           : base("MoldGeneratorbyEdge", "MG_edge",
-              "SCreate a Mold by splitting input geometry by edges",
+              "SCreate a Mold by splitting input base geometry by edges",
               "Slip and Press Casting", "MoldMaking")
         {
         }
