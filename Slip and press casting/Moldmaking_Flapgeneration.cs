@@ -133,7 +133,7 @@ namespace Slip_and_press_casting
                 try
                 {
                     System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                    using (System.IO.Stream stream = assembly.GetManifestResourceStream("Slip_and_press_casting.Asset 2.png"))
+                    using (System.IO.Stream stream = assembly.GetManifestResourceStream("Slip_and_press_casting.flap generator.png"))
                     {
                         if (stream != null)
                         {

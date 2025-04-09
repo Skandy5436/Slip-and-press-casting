@@ -200,8 +200,19 @@ namespace Slip_and_press_casting
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
+                try
+                {
+                    var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    using (var stream = assembly.GetManifestResourceStream("Slip_and_press_casting.Asset 2.png"))
+                    {
+                        if (stream != null)
+                            return new System.Drawing.Bitmap(stream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Rhino.RhinoApp.WriteLine("Error loading icon: " + ex.Message);
+                }
                 return null;
             }
         }
