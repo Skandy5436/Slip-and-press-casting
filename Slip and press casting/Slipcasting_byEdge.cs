@@ -74,6 +74,7 @@ namespace Slip_and_press_casting
             int largestIndex = -1;
             double largestArea = 0;
 
+            // Compute face normals and centers
             for (int i = 0; i < faces.Count; i++)
             {
                 BrepFace face = faces[i];
@@ -99,6 +100,7 @@ namespace Slip_and_press_casting
 
             Vector3d mainPull = (manualOverride) ? overrideDir : (largestIndex >= 0 ? faceNormals[largestIndex] : Vector3d.ZAxis);
 
+            // Evaluate draft
             foreach (Vector3d normal in faceNormals)
             {
                 double angle = Vector3d.VectorAngle(normal, mainPull);
@@ -120,14 +122,19 @@ namespace Slip_and_press_casting
                 for (int j = 0; j < faces.Count; j++)
                 {
                     if (i == j || used[j]) continue;
+
                     Vector3d testDir = faceNormals[j];
                     double angle = Vector3d.VectorAngle(baseDir, testDir);
+
+                    // Check if normals align (or nearly opposite)
                     if (angle < angleTolRad || Math.Abs(angle - Math.PI) < angleTolRad)
                     {
                         Point3d centerI = faceCenters[i];
                         Point3d centerJ = faceCenters[j];
                         Line rayI = new Line(centerI, baseDir * 100);
                         Line rayJ = new Line(centerJ, testDir * 100);
+
+                        // Optional: relax or skip IsPointInside check if too strict
                         if (!brep.IsPointInside(rayI.PointAt(1), 0.01, true) && !brep.IsPointInside(rayJ.PointAt(1), 0.01, true))
                         {
                             cluster.Add(j);
@@ -140,6 +147,16 @@ namespace Slip_and_press_casting
                 clusterDirs.Add(baseDir);
             }
 
+            // Add unclustered faces as individual clusters
+            for (int i = 0; i < used.Length; i++)
+            {
+                if (!used[i])
+                {
+                    clusters.Add(new List<int> { i });
+                    clusterDirs.Add(faceNormals[i]);
+                }
+            }
+
             List<Brep> moldedBreps = new List<Brep>();
             List<int> tagList = new List<int>(new int[faces.Count]);
             for (int i = 0; i < faces.Count; i++) tagList[i] = -1;
@@ -150,7 +167,7 @@ namespace Slip_and_press_casting
                 foreach (int idx in clusters[k])
                 {
                     BrepFace f = faces[idx];
-                    Brep single = f.DuplicateFace(false);
+                    Brep single = f.DuplicateFace(true); // Keep trims for accurate molding
                     clusterBreps.Add(single);
                     tagList[idx] = k;
                 }
@@ -166,13 +183,14 @@ namespace Slip_and_press_casting
                 arrows.Add(arrow);
             }
 
+            // Set outputs
             DA.SetDataList(0, moldedBreps);
             DA.SetDataList(1, clusterDirs);
             DA.SetData(2, mainPull);
             DA.SetDataList(3, arrows);
             DA.SetDataList(4, draftFlags);
             DA.SetDataList(5, tagList);
-        
+
         }
 
         /// <summary>
