@@ -38,7 +38,7 @@ namespace Slip_and_press_casting
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-            pManager.AddMeshParameter("validFaces", "VF", "Shows valid faces which can be molded(blue)", GH_ParamAccess.list);
+            pManager.AddMeshParameter("validFaces","VF", "Shows valid faces which can be molded(blue)", GH_ParamAccess.list);
             pManager.AddMeshParameter("problemFaces", "PF", "Shows problem faces whcih cannot be molded(red)", GH_ParamAccess.list);
             pManager.AddBooleanParameter("isMoldable", "isM", "True if all faces are moldable", GH_ParamAccess.item);
             pManager.AddNumberParameter("draftAngles", "DA", "Draft angles for each face in degrees",GH_ParamAccess.list) ;
