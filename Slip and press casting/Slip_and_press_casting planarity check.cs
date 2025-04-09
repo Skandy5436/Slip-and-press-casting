@@ -7,12 +7,12 @@ using System.Drawing;
 
 namespace Slip_and_press_casting
 {
-    public class MyComponent1 : GH_Component
+    public class Moldmakin : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public MyComponent1()
+        public Moldmakin()
           : base("Planarity Checker ", "Pl Checker",
         "Checks if surface are planar or not",
         "Slip and Press Casting", "Analysis")
