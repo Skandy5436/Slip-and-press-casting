@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using System.Drawing;
 
 namespace Slip_and_press_casting
 {
-    public class MoldPattern : GH_Component
+    public class MyComponent1 : GH_Component
     {
         /// <summary>
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
-        public MoldPattern()
-          : base("Planarity Checker", "Pl Checker",
-        "Shows the planarity of each surface",
+        public MyComponent1()
+          : base("Planarity Checker ", "Pl Checker",
+        "Checks if surface are planar or not",
         "Slip and Press Casting", "Analysis")
         {
         }
@@ -43,6 +44,7 @@ namespace Slip_and_press_casting
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+
             Brep brep = null;
             if (!DA.GetData(0, ref brep)) return;
 
@@ -131,8 +133,21 @@ namespace Slip_and_press_casting
         {
             get
             {
-                //You can add image files to your project resources and access them like this:
-                // return Resources.IconForThisComponent;
+                try
+                {
+                    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    using (System.IO.Stream stream = assembly.GetManifestResourceStream("Slip and press casting.Planarity1.png"))
+                    {
+                        if (stream != null)
+                        {
+                            return new System.Drawing.Bitmap(stream);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Rhino.RhinoApp.WriteLine("Error loading icon: " + ex.Message);
+                }
                 return null;
             }
         }
@@ -142,7 +157,7 @@ namespace Slip_and_press_casting
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("0E7E7DFC-CDEF-4AE7-948B-07BFC6580E21"); }
+            get { return new Guid("DEBCB289-2CFB-4456-827D-38EF1BAA7075"); }
         }
     }
 }
