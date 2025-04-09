@@ -12,7 +12,7 @@ namespace Slip_and_press_casting
         /// Initializes a new instance of the Split_cast_mold_EdgeExtractor class.
         /// </summary>
         public Split_cast_mold_EdgeExtractor()
-          : base("MoldGenerator", "MG",
+          : base("Brep_NakedEdges", "NE",
               "Extracts naked edges of input geometry for flap generation",
               "Slip and Press Casting", "MoldMaking")
         {
