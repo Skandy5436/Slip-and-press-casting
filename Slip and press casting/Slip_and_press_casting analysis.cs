@@ -83,8 +83,8 @@ namespace Slip_and_press_casting
             {
                 Vector3d faceNormal = mesh.FaceNormals[i];
 
-                double angle1 = Vector3d.VectorAngle(faceNormal, pullDir) * (180.0 / Math.PI);
-                double angle2 = Vector3d.VectorAngle(faceNormal, -pullDir) * (180.0 / Math.PI);
+                double angle1 = Vector3d.VectorAngle(faceNormal, pullDir) * (180.0 / Math.PI);  //Z+ axis
+                double angle2 = Vector3d.VectorAngle(faceNormal, -pullDir) * (180.0 / Math.PI); // Z- axis
                 double angle = Math.Min(angle1, angle2);
 
                 angleList.Add(angle);
