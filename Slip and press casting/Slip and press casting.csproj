@@ -7,6 +7,16 @@
     <Description>Description of Slip and press casting</Description>
     <TargetExt>.gha</TargetExt>
   </PropertyGroup>
+	
+  <ItemGroup>
+    <None Remove="icon-Draft analysis.png" />
+    <None Remove="icon-MoldMaking.png" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <EmbeddedResource Include="icon-Draft analysis.png" />
+    <EmbeddedResource Include="icon-MoldMaking.png" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Grasshopper" Version="7.13.21348.13001" IncludeAssets="compile;build" />

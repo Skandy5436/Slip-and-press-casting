@@ -162,13 +162,34 @@ namespace Slip_and_press_casting
         /// You can add image files to your project resources and access them like this:
         /// return Resources.IconForThisComponent;
         /// </summary>
-        protected override System.Drawing.Bitmap Icon => null;
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                try
+                {
+                    var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    using (var stream = assembly.GetManifestResourceStream("Slip_and_press_casting.icon-Draft analysis.png"))
+                    {
+                        if (stream != null)
+                            return new System.Drawing.Bitmap(stream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Rhino.RhinoApp.WriteLine("Error loading icon: " + ex.Message);
+                }
+                return null;
+            }
+        }
 
-    /// <summary>
-    /// Each component must have a unique Guid to identify it. 
-    /// It is vital this Guid doesn't change otherwise old ghx files 
-    /// that use the old ID will partially fail during loading.
-    /// </summary>
-    public override Guid ComponentGuid => new Guid("828fa935-6c7f-45bb-b89d-1e5fd3570ef5");
+
+
+        /// <summary>
+        /// Each component must have a unique Guid to identify it. 
+        /// It is vital this Guid doesn't change otherwise old ghx files 
+        /// that use the old ID will partially fail during loading.
+        /// </summary>
+        public override Guid ComponentGuid => new Guid("828fa935-6c7f-45bb-b89d-1e5fd3570ef5");
   }
 }
