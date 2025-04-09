@@ -14,7 +14,7 @@ namespace Slip_and_press_casting
         public Slip_cast_mold()
           : base("MoldGenerator", "MG",
               "Create a mold to 3d print for making pop mold for slip casting",
-              "Slip and Press Casting", "MoldMaking_splitbyPlane")
+              "Slip and Press Casting", "MoldMaking")
         {
         }
 
