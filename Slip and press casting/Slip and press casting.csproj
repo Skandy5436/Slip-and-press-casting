@@ -11,17 +11,11 @@
   <ItemGroup>
     <None Remove="icon-Draft analysis.png" />
     <None Remove="icon-MoldMaking.png" />
-    <None Remove="Planarity1.png" />
-    <None Remove="Undercut1.png" />
-    <None Remove="Waffle1.png" />
   </ItemGroup>
 	
   <ItemGroup>
     <EmbeddedResource Include="icon-Draft analysis.png" />
     <EmbeddedResource Include="icon-MoldMaking.png" />
-    <EmbeddedResource Include="Planarity1.png" />
-    <EmbeddedResource Include="Undercut1.png" />
-    <EmbeddedResource Include="Waffle1.png" />
   </ItemGroup>
   
   <ItemGroup>
